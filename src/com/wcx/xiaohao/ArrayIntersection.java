@@ -93,30 +93,30 @@ public class ArrayIntersection {
             minArray = array2;
         }
         int[] intersection = new int[max];
-        outer:
-        for (int i = 0; i < max; i++) {
-            inner:
-            for (int j = 0; j < min; j++) {
-                if (maxArray[i] > minArray[j]) {
-                    j++;
-                } else if (maxArray[i] < minArray[j]) {
-                    continue outer;
-                } else {
-                    intersection[i] = maxArray[i];
-                }
+        int i = 0, j = 0, k = 0;
+        while (i < max && j < min) {
+            if (maxArray[i] > minArray[j]) {
+                j++;
+            } else if (maxArray[i] < minArray[j]) {
+                i++;
+            } else {
+                intersection[i] = maxArray[i];
+                i++;
+                j++;
             }
         }
+
         int arrSize = 0;
-        for (int i = 0; i < intersection.length; i++) {
-            if (intersection[i] != 0) {
+        for (int m = 0; m < intersection.length; m++) {
+            if (intersection[m] != 0) {
                 arrSize++;
             }
         }
         int[] newArray = new int[arrSize];
 
-        for (int i = 0; i < intersection.length; i++) {
-            if (intersection[i] != 0) {
-                newArray[arrSize - i] = intersection[i];
+        for (int n = 0; n < intersection.length; n++) {
+            if (intersection[n] != 0) {
+                newArray[arrSize - n] = intersection[n];
             }
         }
         return newArray;
